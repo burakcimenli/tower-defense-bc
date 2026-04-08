@@ -30,10 +30,10 @@ namespace TD.World {
                 searchTimer = targetUpdateInterval;
             }
 
-            if(bestEnemy != null) {
+            shootTimer -= Time.deltaTime;
+            if (bestEnemy != null) {
                 weaponHead.LookAt(bestEnemy.transform);
 
-                shootTimer -= Time.deltaTime;
                 if (shootTimer <= 0) {
                     shootTimer = 1 / data.fireRate;
                     Shoot();

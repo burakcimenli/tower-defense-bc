@@ -1540,7 +1540,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TD.Input.InputManager
   enemyMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
 --- !u!1 &538221372
 GameObject:
   m_ObjectHideFlags: 0
@@ -2131,6 +2131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a641244da6bb7ff4ba869d84c6966b2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TD.World.SpawnManager
+  hasSpawnFinished: 0
   pathManager: {fileID: 370273129}
   spawnRate: 1.5
   spawnOrder:
@@ -2142,6 +2143,8 @@ MonoBehaviour:
     count: 10
   - enemyType: 1
     count: 5
+  - enemyType: 0
+    count: 10
   enemyPrefabs:
   - {fileID: 7819852261826169950, guid: 04c0dd8be4660964fb3f899a5b23f751, type: 3}
   - {fileID: 4409944819985608817, guid: 0aed582f8037935498453bbb036d89d9, type: 3}

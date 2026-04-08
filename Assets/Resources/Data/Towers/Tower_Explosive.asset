@@ -15,6 +15,6 @@ MonoBehaviour:
   damage: 33
   range: 3
   isMultiTarget: 0
-  aoeRange: 4
+  aoeRange: 3
   fireRate: 0.25
   projectileSpeed: 3
