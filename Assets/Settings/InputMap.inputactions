@@ -1,0 +1,35 @@
+{
+    "version": 1,
+    "name": "InputMap",
+    "maps": [
+        {
+            "name": "PlayerControls",
+            "id": "f78dd942-97a7-47fc-9fb3-7e903d5b8f3c",
+            "actions": [
+                {
+                    "name": "DamageEntity",
+                    "type": "Button",
+                    "id": "b996f899-fcf0-491f-a73d-1cd37137baeb",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "3915a337-5bdf-44a1-ab3d-29cfb577b2bd",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DamageEntity",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
