@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Enemy_Croc
   m_EditorClassIdentifier: Assembly-CSharp::TD.Data.EnemyData
   type: 0
-  maxHP: 50
+  maxHP: 100
   damage: 10
   moveSpeed: 2

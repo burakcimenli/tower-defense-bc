@@ -17,5 +17,8 @@ namespace TD.Data {
 
         [Tooltip("Shot per second")]
 		public float fireRate = 1;
+
+        [Tooltip("Speed of the projectile")]
+        public float projectileSpeed = 2;
     } 
 }

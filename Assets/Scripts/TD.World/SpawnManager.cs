@@ -10,6 +10,7 @@ namespace TD.World {
     public class SpawnManager : MonoBehaviour {
 
         public static SpawnManager instance;
+        [HideInInspector] public bool hasSpawnFinished;
 
         [Tooltip("Path manager that handles movement of the spawned enemies")]
         public PathManager pathManager;
@@ -65,10 +66,9 @@ namespace TD.World {
         private void SpawnNext() {
             if(spawnOrder.Count > 0) {
                 var spawnData = spawnOrder[0];
-
                 var enemy = GetFromPool(spawnData.enemyType);
                 PrepEnemy(enemy);
-                Debug.Log("Spawned", enemy);
+                //Debug.Log("Spawned", enemy);
                 pathManager.AddToActive(enemy);
 
                 spawnData.count--;
@@ -79,6 +79,7 @@ namespace TD.World {
 
             else {
                 // finished
+                hasSpawnFinished = true;
                 isSpawnActive = false;
             }
         }
@@ -91,11 +92,12 @@ namespace TD.World {
                 return enemy;
             }
 
-            availableEnemy.gameObject.SetActive(true);
             return availableEnemy;
         }
 
         private void PrepEnemy(Enemy enemy) {
+            enemy.transform.position = -Vector3.right * 500;
+            enemy.gameObject.SetActive(true);
             enemy.Init(DataManager.GetEnemyData(enemy.visualType));
         }
 

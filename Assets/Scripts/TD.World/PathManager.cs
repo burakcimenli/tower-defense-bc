@@ -20,6 +20,10 @@ namespace TD.World {
 
         public void RemoveFromActive(Enemy enemy) {
             activeEnemies.Remove(enemy);
+
+            if(activeEnemies.Count < 1 && SpawnManager.instance.hasSpawnFinished) {
+                GameEvents.OnLevelCompleted?.Invoke(true);
+            }
         }
 
         private void SetupPath() {
@@ -86,8 +90,7 @@ namespace TD.World {
         }
 
         private void EnemyAttack(Enemy enemy) {
-            activeEnemies.Remove(enemy);
-            enemy.gameObject.SetActive(false);
+            enemy.Die();
             Base.instance.TakeDamage(enemy.data.damage);
         }
     } 

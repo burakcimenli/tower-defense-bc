@@ -1,6 +1,7 @@
 using UnityEngine;
 using TD.Core;
 using TD.Data;
+using TD.Util;
 
 namespace TD.World {
     public class Enemy : Unit {
@@ -14,11 +15,28 @@ namespace TD.World {
 
         // Init enemy upon spawning
         public void Init(EnemyData data) {
+            pathProgress = 0;
             maxHP = data.maxHP;
             hp = maxHP;
             this.data = data;
 
             UpdateHP();
+        }
+
+        public override void TakeDamage(int dmg) {
+            base.TakeDamage(dmg);
+
+            if(hp < 1) {
+                Die();
+
+            }
+
+        }
+
+        public void Die() {
+            SpawnManager.instance.pathManager.RemoveFromActive(this);
+            gameObject.SetActive(false);
+            FXManager.PlayFX("Death", transform.position, 2);
         }
     } 
 }

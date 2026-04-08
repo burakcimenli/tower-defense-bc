@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ad72c93f962abf43baa3d369cf9431f, type: 3}
   m_Name: Tower_Explosive
   m_EditorClassIdentifier: Assembly-CSharp::TD.Data.TowerData
-  damage: 100
+  damage: 33
+  range: 3
   isMultiTarget: 0
-  aoeRange: 1
-  fireRate: 1
+  aoeRange: 4
+  fireRate: 0.25
+  projectileSpeed: 3

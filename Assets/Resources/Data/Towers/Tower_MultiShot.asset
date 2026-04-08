@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ad72c93f962abf43baa3d369cf9431f, type: 3}
   m_Name: Tower_MultiShot
   m_EditorClassIdentifier: Assembly-CSharp::TD.Data.TowerData
-  damage: 100
-  isMultiTarget: 0
+  damage: 60
+  range: 3
+  isMultiTarget: 1
   aoeRange: 0
-  fireRate: 1
+  fireRate: 0.5
+  projectileSpeed: 7

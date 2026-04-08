@@ -2,13 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TD.Data;
+using TD.Util;
+using UnityEditor;
 using UnityEngine;
 
 namespace TD.World {
+    [SelectionBase]
     public class Tower : MonoBehaviour {
 
         public TowerData data;
         [SerializeField] private Transform weaponHead;
+        [SerializeField] private GameObject boltPrefab;
         [SerializeField] private ParticleSystem[] muzzleFX;
         private List<Enemy> targets = new List<Enemy>();
         private Enemy bestEnemy;
@@ -17,7 +21,6 @@ namespace TD.World {
         private float searchTimer; // update timer for searching (targets)
         private float targetUpdateInterval = 0.1f;  // update every 0.1 sec
 
-        private GameObject boltPrefab;
         private List<Transform> boltPool = new List<Transform>();
 
         private void Update() {
@@ -30,6 +33,7 @@ namespace TD.World {
             if(bestEnemy != null) {
                 weaponHead.LookAt(bestEnemy.transform);
 
+                shootTimer -= Time.deltaTime;
                 if (shootTimer <= 0) {
                     shootTimer = 1 / data.fireRate;
                     Shoot();
@@ -76,7 +80,7 @@ namespace TD.World {
         // Pooling operations
         private Transform GetBoltFromPool() {
             var bolt = boltPool.Where(b => !b.gameObject.activeInHierarchy).FirstOrDefault();
-            if(bolt != null) {
+            if(bolt == null) {
                 bolt = SpawnBolt();
                 boltPool.Add(bolt);
             }
@@ -91,7 +95,7 @@ namespace TD.World {
 
         private IEnumerator ShootBolt(Transform bolt, Enemy enemy) {
             Vector3 startPos = bolt.position;
-            float speed = 5;
+            float speed = data.projectileSpeed;
             float duration = Vector3.Distance(transform.position, enemy.transform.position) / speed;
             float counter = 0;
             while(counter < duration) {
@@ -101,24 +105,25 @@ namespace TD.World {
                 yield return null;
             }
 
-            bolt.gameObject.SetActive(false);
             if (data.aoeRange > 0) {
                 SplashDamage(bolt.position);
             }
             else {
+                FXManager.PlayFX("Bolt", bolt.position, 1);
                 enemy.TakeDamage(data.damage);
             }
+            bolt.gameObject.SetActive(false);
         }
 
         private void SplashDamage(Vector3 position) {
-            // FXManager
-            foreach(var enemy in SpawnManager.instance.pathManager.activeEnemies) {
+            FXManager.PlayFX("Explosion", position, 2);
+            for(int i = SpawnManager.instance.pathManager.activeEnemies.Count - 1; i >= 0; i--) {
+                var enemy = SpawnManager.instance.pathManager.activeEnemies[i];
                 float distSq = (enemy.transform.position - position).sqrMagnitude;
                 if (distSq <= data.aoeRange * data.aoeRange) {
                     enemy.TakeDamage(data.damage);
                 }
             }
-
         }
     }
 

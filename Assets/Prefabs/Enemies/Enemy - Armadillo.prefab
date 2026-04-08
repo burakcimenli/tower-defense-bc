@@ -394,7 +394,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3915585340561348575}
   - component: {fileID: 4409944819985608817}
-  m_Layer: 0
+  - component: {fileID: 3068684072961037813}
+  m_Layer: 6
   m_Name: Enemy - Armadillo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -431,11 +432,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TD.World.Enemy
   hpBar: {fileID: 9033680742367394926}
-  maxHP: 150
   hp: 0
+  maxHP: 150
   visualType: 1
   pathProgress: 0
   data: {fileID: 11400000, guid: 2564d69782d474d45b33b7ac5be97472, type: 2}
+--- !u!135 &3068684072961037813
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3828897733914205859}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0.2, z: 0}
 --- !u!1 &4062196792862721141
 GameObject:
   m_ObjectHideFlags: 0
@@ -942,8 +964,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TD.World.Enemy
   hpBar: {fileID: 0}
-  maxHP: 0
   hp: 0
+  maxHP: 0
   visualType: 1
   pathProgress: 0
   data: {fileID: 0}
