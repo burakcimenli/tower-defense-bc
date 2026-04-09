@@ -4,7 +4,10 @@ using UnityEngine.SceneManagement;
 
 namespace TD.Core {
     public class MainManager : MonoBehaviour {
+        public static int score;
+
         private void OnEnable() {
+            score = 0;
             GameEvents.OnGameStarted += StartGame;
             GameEvents.OnGameRestarted += Restart;
             GameEvents.OnLevelCompleted += CompleteLevel;
@@ -25,6 +28,11 @@ namespace TD.Core {
 
         public void SetPause(bool isPaused) {
             Time.timeScale = isPaused ? 0 : 1;
+        }
+
+        public static void AddScore(int _score) {
+            score += _score;
+            GameEvents.OnScoreUpdated?.Invoke(score);
         }
 
         private void OnDisable() {

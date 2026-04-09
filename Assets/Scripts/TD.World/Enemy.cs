@@ -2,6 +2,7 @@ using UnityEngine;
 using TD.Core;
 using TD.Data;
 using TD.Util;
+using TD.UI;
 
 namespace TD.World {
     public class Enemy : Unit {
@@ -27,8 +28,9 @@ namespace TD.World {
             base.TakeDamage(dmg);
 
             if(hp < 1) {
+                // Died to a weapon
+                MainManager.AddScore(5);
                 Die();
-
             }
 
         }

@@ -7,5 +7,6 @@ namespace TD.Core {
         public static Action OnGameRestarted;
         public static Action<bool> OnLevelCompleted;
         public static Action<bool> OnGamePaused;
-    } 
+        public static Action<int> OnScoreUpdated;
+    }
 }

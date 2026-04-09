@@ -1,15 +1,22 @@
 using UnityEngine;
 using TD.Core;
 using TMPro;
+using System;
 
 namespace TD.UI {
     public class UIManager : MonoBehaviour {
 
         [SerializeField] private GameObject panel_start, panel_complete, panel_fail;
         [SerializeField] private GameObject restartButton;
+        [SerializeField] private TextMeshProUGUI scoreText;
 
         private void OnEnable() {
             GameEvents.OnLevelCompleted += OnLevelCompleted;
+            GameEvents.OnScoreUpdated += OnScoreUpdated;
+        }
+
+        public void OnScoreUpdated(int score) {
+            scoreText.SetText("<size=-20>SCORE</size> " + score);
         }
 
         public void OnStartClicked() {
